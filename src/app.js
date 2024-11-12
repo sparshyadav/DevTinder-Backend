@@ -23,6 +23,13 @@ app.get("/feed", async (req, res) => {
     res.send(feed);
 })
 
+app.patch("/update", async (req, res) => {
+    let name = req.body.firstName;
+    console.log(name);
+    const updatedUser = await User.findByIdAndUpdate(req.id, { firstName: req.body.firstName });
+    res.send(updatedUser);
+})
+
 app.listen(3000, () => {
     connectDB();
     console.log("Server is Successfully Listening on Port: 3000");
